@@ -30,6 +30,22 @@ type Equipo = [Ninja]
 -- --------------------------- Funciones -----------------------
 -- ------------ Parte A
 -- Funcion A
+{-
+OTRA IMPLEMENTACION:
+
+obtenerHerramienta :: Nombre -> Number -> Ninja -> Ninja
+obtenerHerramienta herramienta cant ninja = obtener herramienta (cantFinal cant ninja) ninja
+
+cantFinal :: Number -> Ninja -> Number
+cantFinal cant ninja = min cant (cantPosible ninja)
+
+cantPosible :: Ninja -> Number
+cantPosible = (100 -) . sum . map cantDisponible. herramientas 
+
+
+
+-}
+
 obtenerHerramienta :: Nombre -> Number -> Ninja -> Ninja
 obtenerHerramienta herramienta cant ninja 
     | puedeObtener cant ninja = obtener herramienta cant ninja
@@ -52,7 +68,7 @@ agregarHerramientas ninja herramienta = ninja {
     } 
 
 cantPosible :: Ninja -> Number
-cantPosible = (100 -) . sum . map cantDisponible. herramientas 
+cantPosible = (100 -) . sumaHerramientas 
 
 -- Funcion B
 usarHerramienta :: Ninja -> Herramienta -> Ninja
